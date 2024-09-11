@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.get{
+    display: grid;
+    grid-template-columns: repeat(3,450px);
+    
+}
+
+.background{
+    background-color: rgb(250,244,234);
+}
+.lenght{
+    width: 60%;
+    margin: 0vh 35vh 0vh 35vh;
+}
+footer{
+    background-color: rgb(226,220,219);
+}

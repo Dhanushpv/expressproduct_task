@@ -1,0 +1,76 @@
+// app.js
+
+
+app.get('/user/:id', async (req, res) => {
+    const productId = req.params.id;
+    console.log("productId", productId);
+
+    try {
+        const product = await add.findOne({ _id: productId });
+
+        if (product) {
+            res.status(200).json({
+                title: product.title,
+                description: product.description,
+                price: product.price,
+                category: product.category,
+                image:product.image
+            });
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (error) {
+        console.error("Error fetching product:", error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+// script
+function singleproduct(id){
+    console.log("Reached.......");
+    window.location=`singleview.html?id=${id}`;
+}
+
+async function loadSingle() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    if (!id) {
+        console.log("No product ID found in the URL");
+        return;
+    }
+
+    try {
+        const response = await fetch(`/user/${id}`, { method: 'GET' });
+
+        if (response.ok && response.headers.get("content-type").includes("application/json")) {
+            let productData = await response.json();
+            console.log("productData", productData);
+
+            let container = document.getElementById('Singlecontainer');
+            
+            let productHTML = `
+                <div class="">
+                    <div class="">
+                        <img src="${productData.image}" style="width:300px;">
+                    </div>
+                    <div class="card-body">
+                        <h2>${productData.title}</h2>
+                        <p><strong>Description:</strong> ${productData.description}</p>
+                        <p><strong>Price:</strong> $${productData.price}</p>
+                        <p><strong>Category:</strong> ${productData.category}</p>
+                    </div>
+
+                </div>
+            `;
+
+            container.innerHTML = productHTML;
+        } else {
+            console.error("Failed to fetch product data. Status:", response.status);
+        }
+    } catch (error) {
+        console.error("Error fetching product:", error);
+    }
+}

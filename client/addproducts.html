@@ -8,45 +8,46 @@
     <link rel="stylesheet" href="./addproducts.css">
     <title>Add Products</title>
   </head>
-  <body>
-    <div class="add_form text-center ">
-    <div class="  shadow-lg p-5 bg-body rounded w-75">
+  <body class="position-relative">
+    <div class="back"></div>
+    <div class="add_form text-center position-absolute top-50 start-50 translate-middle">
+    <div class="blur">
       <h1>Add Products</h1>
-    <form action="" class="">
+    <form onsubmit="adduser(event)">
       
         <div class="pt-2">
             <label for="title"></label>
-            <input type="text" id="title" class="text-center w-75"  placeholder="Title">
+            <input type="text" id="title" class="text-center w-75  p-2 field"  placeholder="Title" required>
         </div>
-        <div class="pt-5">
+        <div class="pt-5 field">
             <label for="description"></label>
-            <input type="text" id="description" class="text-center w-75"  placeholder="Description">
+            <input type="text" id="description" class="text-center w-75 p-2 field"  placeholder="Description" required>
         </div>
         <div class="pt-5">
-            <label for="catagory"></label>
-            <input type="text" id=""  class="text-center w-75" placeholder="Catagory">
+            <label for="category" class="field"></label>
+            <input type="text" id="category"  class="text-center w-75 p-2 field" placeholder="Category" required>
         </div>
         <div class="pt-5">
             <label for="price"></label>
-            <input type="number" class="text-center w-75"  id="price" placeholder="Price">
+            <input type="number" class="text-center w-75 p-2 field"  id="price" placeholder="Price" required>
         </div>
         <div class="pt-5">
             <label for="image"></label>
-            <input type="text"  class="text-center w-75" id="image" placeholder="Image-url">
+            <input type="text"  class="text-center w-75 p-2 field" id="image" placeholder="Image-url" required>
         </div>
         <div class="pt-5 d-flex justify-content-center">
           <div class="px-4">
-            <label for="submit"></label>
-            <input type="submit"  class="text-center  " id="submit" value="Submit">
+            <!-- <label for="submit"></label> -->
+            <input type="submit"  class="text-center">
           </div> 
-          <div class="px-4"><a class="" href="./Getproducts.html">Product List</a></div>
+          <!-- <div class="px-4"><a class="" href="./Getproducts.html">Product List</a></div> -->
       </div>
 
     </form>
     </div>
     </div>
 
-    
+    <script src="./script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     
