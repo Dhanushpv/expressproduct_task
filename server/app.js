@@ -110,90 +110,38 @@ app.get('/user/:id', async (req, res) => {
 
 
 
+app.put('/updateproduct',
+    async (req,res)=>{
+       let body =req.body;
+       console.log("body  ",body);
 
+       let data ={
+        title : body.title,
+        description : body.description,
+        price : body.price,
+        category : body.category,
+        image : body.image
+       }
+       console.log(data);
 
+       let id = req.query.id;
 
+       let _id =new ObjectId(id);
 
-app.put('/updateproduct/:id', async (req, res) => {
-    app.put('/updateproduct/:id', async (req, res) => {
-        try {
-            const body = req.body;
-            console.log("Request received to update product with ID:", req.params.id);
-            console.log("Request Body: ", body);
-    
-            const data = {
-                title : body.title,
-                description : body.description,
-                price : body.price,
-                category : body.category,
-                image : body.image
-            };
-    
-            console.log("Data to be updated: ", data);
-    
-            const id = req.params.id;
-    
-            // Validate if `id` is a valid ObjectId
-            if (!ObjectId.isValid(id)) {
-                console.error("Invalid ObjectId: ", id);
-                return res.status(400).json({ error: "Invalid product ID" });
-            }
-    
-            // Update the product by its _id
-            const updateResult = await add.updateOne(
-                { _id: ObjectId(id) },
-                { $set: data }
-            );
-    
-            console.log("Update Operation Result: ", updateResult);
-    
-            if (updateResult.matchedCount === 0) {
-                return res.status(404).json({ message: "Product not found." });
-            }
-    
-            if (updateResult.modifiedCount > 0) {
-                return res.status(200).json({ message: "Product successfully updated." });
-            } else {
-                return res.status(200).json({ message: "No changes were made to the product." });
-            }
-    
-        } catch (error) {
-            console.error("Error updating product: ", error);
-            res.status(500).json({ error: "An error occurred while updating the product." });
-        }
-    });
-});
+       let user_data = await add.updateOne({_id},{$set:data});
 
-// app.put('/updateproduct/:id',
-//     async (req,res)=>{
-//        let body =req.body;
-//        console.log("body  ",body);
-
-//        let data ={
-//         title : body.title,
-//         description : body.description,
-//         price : body.price,
-//         category : body.category,
-//         image : body.image
-//        }
-//        console.log(data);
-
-//        let id = req.params.id;
-
-//        let user_data = await add.updateOne({id},{$set:data});
-
-//        console.log("user_data",user_data);
-//        if(user_data){
-//         res.status(200).send(" successfully updated..");
-//        }else{
-//         res.status(400).send(" Something went wrong");
-//        }
+       console.log("user_data",user_data);
+       if(user_data){
+        res.status(200).send(user_data);
+       }else{
+        res.status(400).send(" Something went wrong");
+       }
 
        
 
       
-//     }
-// )
+    }
+)
 
 
 

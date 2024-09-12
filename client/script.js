@@ -54,7 +54,7 @@ async function fetchData(event) {
                     <div onClick="singleproduct('${data[i]._id}')">${data[i].category}</div>
                     <div onClick="singleproduct('${data[i]._id}')"> Rs. ${data[i].price}</div>
                     <div class="d-flex justify-content-between ">
-                    <div class="w-100"><button class="w-100" onClick="singleproduct('${data[i]._id}')" style=:"width:100%";>Add to Cart</button></div>
+                    <div class="w-100"><button class="w-100 custom-btn btn-4" onClick="singleproduct('${data[i]._id}')" style=:"width:100%";>Add to Cart</button></div>
                     <span class="px-3"><i class="fa fa-trash-o" style="font-size:28px;color:red" onClick="deleteProduct('${data[i]._id}')" ></i></span>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ async function loadSingle() {
                         <p> ${productData.category}</p>
 
                     </div>
-                    <button   class="w-100">UPDATE</button>
+                    <button  onClick="editevent('${productData._id}')" class="w-100">UPDATE</button>
                 </div>
             `;
 
@@ -119,30 +119,6 @@ async function loadSingle() {
         console.error("Error fetching product:", error);
     }
 }
-
-
-
-//  async function deleteProduct(id){
-//     console.log("clicked....")
-//      try {
-//         const response = await fetch(`/submits?id=${id}`, {
-//             method: 'DELETE',
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-        
-
-//         await response.json();
-
-//     } catch (error) {
-//         console.error('Delete error:', error);
-//     }
-// }
-
-
-//chat gpt
 
 async function deleteProduct(id) {
     console.log("Clicked to delete product with ID:", id);
@@ -156,17 +132,17 @@ async function deleteProduct(id) {
             throw new Error(`Network response was not ok: ${errorText}`);
         }
 
-        const result = await response.json();
-        console.log('Delete successful:', result.message);
 
-        window.location="Getproducts.html";
 
-        if(result.status===200){
+        if(response.status===200){
             alert("product deleted successfully")
         }else{
             alert("somthing went wrong")
         }
 
+        location.assign('Getproducts.html');
+
+        
     } catch (error) {
         console.error('Delete error:', error);
     }
@@ -174,3 +150,12 @@ async function deleteProduct(id) {
 
 
 
+function editevent(id){
+    console.log("reached at updatepage.....")
+    window.location=`update.html?id=${id}`
+
+}
+function updateproduct(){
+    let params = new URLSearchParams(window.location.search);
+    console.log("params",params)
+}

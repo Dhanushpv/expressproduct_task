@@ -3,3 +3,6 @@
     padding: 0;
 
 }
+.back{
+background-image: linear-gradient(to bottom right, rgb(61, 190, 255), rgb(222, 126, 227));
+}
